@@ -12,7 +12,7 @@
     {{!-- Theme assets - use the {asset} helper to reference styles & scripts,
     this will take care of caching and cache-busting automatically --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/highlight.css"}}"/>
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings,
     it should always be the last tag before the closing head tag --}}
@@ -91,6 +91,7 @@
         crossorigin="anonymous">
 </script>
 <script src="{{asset "built/casper.js"}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>
     $(document).ready(function () {
         // Mobile Menu Trigger
@@ -108,6 +109,8 @@
             })
         })
     });
+
+    hljs.initHighlightingOnLoad()
 </script>
 
 
