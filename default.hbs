@@ -20,69 +20,13 @@
 
 </head>
 <body class="{{body_class}}">
-<div class="page-cover-out"></div>
-<div class="page-cover-in"></div>
 <div class="viewport">
-    <header id="gh-head" class="gh-head {{#if @site.cover_image}}has-cover{{/if}}">
-        <nav class="gh-head-inner inner gh-container">
+    {{>header}}
 
-            <div class="gh-head-brand">
-                <a class="gh-head-logo" href="{{@site.url}}">
-                    {{#if @site.logo}}
-                        <img src="{{@site.logo}}" alt="{{@site.title}}"/>
-                    {{else}}
-                        {{@site.title}}
-                    {{/if}}
-                </a>
-                <a class="gh-burger" role="button">
-                    <div class="gh-burger-box">
-                        <div class="gh-burger-inner"></div>
-                    </div>
-                </a>
-            </div>
-            <div class="gh-head-menu">
-                {{navigation}}
-            </div>
-            <div class="gh-head-actions">
-                <div class="gh-social">
-                    {{#if @site.facebook}}
-                        <a class="gh-social-facebook" href="{{facebook_url @site.facebook}}" title="Facebook"
-                           target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
-                    {{/if}}
-                    {{#if @site.twitter}}
-                        <a class="gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter"
-                           target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
-                    {{/if}}
-                </div>
-
-                {{#unless @member}}
-                    <a class="gh-head-button" href="#/portal/signup">Subscribe</a>
-                {{else}}
-                    <a class="gh-head-button" href="#/portal/account">Account</a>
-                {{/unless}}
-            </div>
-        </nav>
-    </header>
-
-    {{#if @site.cover_image}}
-        {{#is "index"}}
-            <main>
-                {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
-                {{{body}}}
-            </main>
-        {{/is}}
-        {{^is "index"}}
-            <main style="margin-top: 60px">
-                {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
-                {{{body}}}
-            </main>
-        {{/is}}
-    {{else}}
-        <main style="margin-top: 60px">
-            {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
-            {{{body}}}
-        </main>
-    {{/if}}
+    <main>
+        {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
+        {{{body}}}
+    </main>
 
     {{!-- The global footer at the very bottom of the screen --}}
     <footer class="site-footer outer">
@@ -180,19 +124,10 @@
             child.append(copy)
             x.prepend(child)
         })
-
-        $('.page-cover-out').addClass('active')
-
-        $("a[href]").click(function (evt) {
-            evt.preventDefault()
-            const link = $(this).attr("href");
-            $('.page-cover-in').addClass('active')
-            setTimeout(function () {
-                window.location.href = link;
-            }, 500);
-        });
     });
 </script>
+
+{{{block "scripts"}}}
 
 
 {{!-- Ghost outputs required functional scripts with this tag - it should always be the last thing before the closing body tag --}}
