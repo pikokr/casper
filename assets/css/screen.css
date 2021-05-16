@@ -176,6 +176,7 @@ production stylesheet in assets/built/screen.css
     top: 0;
     left: 0;
     width: 100vw;
+    z-index: 999999;
 }
 
 .gh-head a {
