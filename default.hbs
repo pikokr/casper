@@ -64,10 +64,18 @@
     </header>
 
     {{#if @site.cover_image}}
-        <main>
-            {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
-            {{{body}}}
-        </main>
+        {{#is "index"}}
+            <main>
+                {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
+                {{{body}}}
+            </main>
+        {{/is}}
+        {{^is "index"}}
+            <main style="padding-top: 60px">
+                {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
+                {{{body}}}
+            </main>
+        {{/is}}
     {{else}}
         <main style="padding-top: 60px">
             {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
