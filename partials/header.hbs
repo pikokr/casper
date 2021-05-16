@@ -10,39 +10,45 @@
                 {{/if}}
             </a>
         </div>
-        <div class="site-nav-content" style="display: flex;flex-grow: 1;">
-            {{#@if @site.navigation}}
-                <div class="gh-head-menu" style="display: flex;">
-                    <div class="nav-primary">
-                        {{navigation}}
-                    </div>
-                    <div style="flex-grow: 1"></div>
-                    <div class="nav-secondary">
-                        {{navigation type="secondary"}}
-                    </div>
-                </div>
+        <div style="flex-grow: 1">
+            <div style="position: relative">
                 {{#is "post"}}
                     <span class="nav-post-title {{#unless @site.logo}}dash{{/unless}}">{{post.title}}</span>
                 {{/is}}
-            {{/@if}}
-        </div>
-        <div class="gh-head-actions">
-            <div class="gh-social">
-                {{#if @site.facebook}}
-                    <a class="gh-social-facebook" href="{{facebook_url @site.facebook}}" title="Facebook"
-                       target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
-                {{/if}}
-                {{#if @site.twitter}}
-                    <a class="gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter"
-                       target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
-                {{/if}}
             </div>
+            <div style="display: flex; flex-grow: 1; position: relative" class="site-nav-content-container">
+                <div class="site-nav-content" style="display: flex;">
+                    {{#@if @site.navigation}}
+                        <div class="gh-head-menu" style="display: flex;flex-grow: 1">
+                            <div class="nav-primary">
+                                {{navigation}}
+                            </div>
+                            <div style="flex-grow: 1"></div>
+                            <div class="nav-secondary">
+                                {{navigation type="secondary"}}
+                            </div>
+                        </div>
+                    {{/@if}}
+                </div>
+                <div class="gh-head-actions">
+                    <div class="gh-social">
+                        {{#if @site.facebook}}
+                            <a class="gh-social-facebook" href="{{facebook_url @site.facebook}}" title="Facebook"
+                               target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                        {{/if}}
+                        {{#if @site.twitter}}
+                            <a class="gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter"
+                               target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                        {{/if}}
+                    </div>
 
-            {{#unless @member}}
-                <a class="gh-head-button" href="#/portal/signup">Subscribe</a>
-            {{else}}
-                <a class="gh-head-button" href="#/portal/account">Account</a>
-            {{/unless}}
+                    {{#unless @member}}
+                        <a class="gh-head-button" href="#/portal/signup">Subscribe</a>
+                    {{else}}
+                        <a class="gh-head-button" href="#/portal/account">Account</a>
+                    {{/unless}}
+                </div>
+            </div>
         </div>
     </nav>
 </header>
