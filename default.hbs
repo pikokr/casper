@@ -143,8 +143,6 @@
         // FitVids - Makes video embeds responsive
         $(".gh-content").fitVids();
 
-        hljs.initHighlighting()
-
         Array.from(document.querySelectorAll('code')).map(x => x.parentElement).forEach((x) => {
             const child = document.createElement('div')
             child.style.display = 'flex'
@@ -156,6 +154,17 @@
             title.style.marginRight = '10px'
             title.style.textAlign = 'center'
             title.innerText = ''
+            const code = x.querySelector('code')
+
+            if (code.innerText.startsWith('title: ')) {
+                const lines = code.innerText.split('\n')
+                const line = lines.shift()
+                title.innerText = line.slice(7)
+                code.innerText = lines.join('\n')
+            }
+
+            hljs.highlightBlock(code)
+
             child.append(title)
             const copy = document.createElement('span')
             copy.innerText = '복사하기'
@@ -165,7 +174,7 @@
             copy.style.userSelect = 'none'
             copy.style.cursor = 'pointer'
             copy.onclick = () => {
-                copyTextToClipboard(x.querySelector('code').innerText)
+                copyTextToClipboard(code.innerText)
                 alert('복사되었습니다.')
             }
             child.append(copy)
