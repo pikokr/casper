@@ -1549,7 +1549,7 @@ Ghost editor. */
 .author-profile-content {
     height: auto;
     position: sticky;
-    top: 4vmin;
+    top: calc(4vmin + 60px);
     font-size: 1.4rem;
     line-height:  1.4em;
 }
