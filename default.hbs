@@ -109,6 +109,32 @@
 <script src="{{asset "built/casper.js"}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>
+    function fallbackCopyTextToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        document.execCommand('copy');
+
+        document.body.removeChild(textArea);
+    }
+
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text)
+    }
+
+
     $(document).ready(function () {
         // Mobile Menu Trigger
         $('.gh-burger').click(function () {
@@ -117,25 +143,46 @@
         // FitVids - Makes video embeds responsive
         $(".gh-content").fitVids();
 
-        document.querySelectorAll('pre').forEach((x, i) => {
+        hljs.initHighlighting()
+
+        Array.from(document.querySelectorAll('code')).map(x => x.parentElement).forEach((x) => {
             const child = document.createElement('div')
+            child.style.display = 'flex'
+            child.style.alignItems = 'center'
             child.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="54" style="margin-bottom: 10px" height="14" viewBox="0 0 54 14"><g fill="none" fill-rule="evenodd" transform="translate(1 1)"><circle cx="6" cy="6" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"></circle><circle cx="26" cy="6" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"></circle><circle cx="46" cy="6" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"></circle></g></svg>'
+            const title = document.createElement('div')
+            title.style.flexGrow = '1'
+            title.style.marginLeft = '10px'
+            title.style.marginRight = '10px'
+            title.style.textAlign = 'center'
+            title.innerText = ''
+            child.append(title)
+            const copy = document.createElement('span')
+            copy.innerText = '복사하기'
+            copy.style.background = '#4e4e4e'
+            copy.style.borderRadius = '4px'
+            copy.style.padding = '0 8px'
+            copy.style.userSelect = 'none'
+            copy.style.cursor = 'pointer'
+            copy.onclick = () => {
+                copyTextToClipboard(x.querySelector('code').innerText)
+                alert('복사되었습니다.')
+            }
+            child.append(copy)
             x.prepend(child)
         })
 
         $('.page-cover-out').addClass('active')
 
-        $("a[href]").click(function(evt){
+        $("a[href]").click(function (evt) {
             evt.preventDefault()
             const link = $(this).attr("href");
             $('.page-cover-in').addClass('active')
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = link;
             }, 500);
         });
     });
-
-    hljs.initHighlightingOnLoad()
 </script>
 
 
