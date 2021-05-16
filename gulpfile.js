@@ -3,6 +3,7 @@ const pump = require('pump');
 const path = require('path');
 const releaseUtils = require('@tryghost/release-utils');
 const inquirer = require('inquirer');
+const rimraf  = require('rimraf')
 
 // gulp plugins and utils
 const livereload = require('gulp-livereload');
@@ -45,6 +46,7 @@ function hbs(done) {
 }
 
 function css(done) {
+    rimraf.sync('assets/built/*.css')
     pump([
         src('assets/css/*.css', {sourcemaps: true}),
         postcss([
@@ -59,6 +61,7 @@ function css(done) {
 }
 
 function js(done) {
+    rimraf.sync('assets/built/casper.js')
     pump([
         src([
             // pull in lib files first so our own code can depend on it

@@ -172,6 +172,10 @@ production stylesheet in assets/built/screen.css
     line-height: 1.3em;
     color: #fff;
     background: var(--ghost-accent-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
 }
 
 .gh-head a {

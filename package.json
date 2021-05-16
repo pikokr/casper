@@ -93,5 +93,8 @@
         "extends": [
             "@tryghost:theme"
         ]
+    },
+    "dependencies": {
+        "rimraf": "^3.0.2"
     }
 }
