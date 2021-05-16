@@ -10,10 +10,16 @@
                 {{/if}}
             </a>
         </div>
-        <div class="site-nav-content">
+        <div class="site-nav-content" style="display: flex;flex-grow: 1;">
             {{#@if @site.navigation}}
-                <div class="gh-head-menu">
-                    {{navigation}}
+                <div class="gh-head-menu" style="display: flex;">
+                    <div class="nav-primary">
+                        {{navigation}}
+                    </div>
+                    <div style="flex-grow: 1"></div>
+                    <div class="nav-secondary">
+                        {{navigation type="secondary"}}
+                    </div>
                 </div>
                 {{#is "post"}}
                     <span class="nav-post-title {{#unless @site.logo}}dash{{/unless}}">{{post.title}}</span>
