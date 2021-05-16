@@ -20,6 +20,8 @@
 
 </head>
 <body class="{{body_class}}">
+<div class="page-cover-out"></div>
+<div class="page-cover-in"></div>
 <div class="viewport">
     <header id="gh-head" class="gh-head {{#if @site.cover_image}}has-cover{{/if}}">
         <nav class="gh-head-inner inner gh-container">
@@ -120,6 +122,17 @@
             child.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="54" style="margin-bottom: 10px" height="14" viewBox="0 0 54 14"><g fill="none" fill-rule="evenodd" transform="translate(1 1)"><circle cx="6" cy="6" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"></circle><circle cx="26" cy="6" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"></circle><circle cx="46" cy="6" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"></circle></g></svg>'
             x.prepend(child)
         })
+
+        $('.page-cover-out').addClass('active')
+
+        $("a[href]").click(function(evt){
+            evt.preventDefault()
+            const link = $(this).attr("href");
+            $('.page-cover-in').addClass('active')
+            setTimeout(function() {
+                window.location.href = link;
+            }, 500);
+        });
     });
 
     hljs.initHighlightingOnLoad()
