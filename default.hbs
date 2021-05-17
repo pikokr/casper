@@ -65,17 +65,27 @@
         textArea.focus();
         textArea.select();
 
-        document.execCommand('copy');
+        try {
+            const successful = document.execCommand('copy');
+            const msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
 
         document.body.removeChild(textArea);
     }
 
-    function copyTextToClipboard(text) {
+    async function copyTextToClipboard(text) {
         if (!navigator.clipboard) {
             fallbackCopyTextToClipboard(text);
             return;
         }
-        navigator.clipboard.writeText(text)
+        await navigator.clipboard.writeText(text).then(function() {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+        })
     }
 
 
@@ -118,8 +128,7 @@
             copy.style.userSelect = 'none'
             copy.style.cursor = 'pointer'
             copy.onclick = () => {
-                copyTextToClipboard(code.innerText)
-                alert('복사되었습니다.')
+                copyTextToClipboard(code.innerText).then(()=>alert('복사되었습니다.'))
             }
             child.append(copy)
             x.prepend(child)
