@@ -70,11 +70,11 @@ into the {body} tag of the default.hbs template --}}
             {{content}}
         </section>
 
-        {{!--
+
         <section class="article-comments gh-canvas">
             If you want to embed comments, this is a good place to paste your code!
         </section>
-        --}}
+
 
     </article>
 
@@ -126,5 +126,18 @@ into the {body} tag of the default.hbs template --}}
                 activeClass: 'nav-post-title-active'
             });
         })
+    </script>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = "{{url absolute="true"}}";
+            this.page.identifier = "ghost-{{comment_id}}"
+        };
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://pikokr-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
 {{/contentFor}}
