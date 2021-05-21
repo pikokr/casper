@@ -71,14 +71,14 @@ into the {body} tag of the default.hbs template --}}
         </section>
 
 
-        <section class="article-comments gh-canvas">
+        <section class="post-full-comments gh-canvas">
             <div id="disqus_thread"></div>
             <script>
                 var disqus_config = function () {
                     this.page.url = "{{url absolute="true"}}";
                     this.page.identifier = "ghost-{{comment_id}}"
                 };
-                (function() {
+                (function () {
                     var d = document, s = d.createElement('script');
                     s.src = 'https://pikokr-blog.disqus.com/embed.js';
                     s.setAttribute('data-timestamp', +new Date());
@@ -131,7 +131,7 @@ into the {body} tag of the default.hbs template --}}
 
 {{#contentFor "scripts"}}
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             Casper.stickyNavTitle({
                 navSelector: '#gh-head',
                 titleSelector: '.article-title',
