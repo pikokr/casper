@@ -1,5 +1,5 @@
 <header id="gh-head" class="gh-head {{#if @site.cover_image}}has-cover{{/if}}">
-    <nav class="gh-head-inner inner gh-container">
+    <nav class="gh-head-inner inner gh-container" style="overflow: hidden">
 
         <div class="gh-head-brand">
             <a class="gh-head-logo" href="{{@site.url}}">
@@ -10,7 +10,7 @@
                 {{/if}}
             </a>
         </div>
-        <div style="flex-grow: 1">
+        <div style="flex-grow: 1;">
             <div style="position: relative">
                 {{#is "post"}}
                     <span class="nav-post-title {{#unless @site.logo}}dash{{/unless}}">{{post.title}}</span>
