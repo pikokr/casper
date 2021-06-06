@@ -2,11 +2,19 @@
 <html lang="{{@site.locale}}">
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-K2VRJGS');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-K2VRJGS');</script>
     <!-- End Google Tag Manager -->
 
     {{!-- Basic meta - advanced meta is output with {ghost_head} below --}}
@@ -20,7 +28,8 @@
     this will take care of caching and cache-busting automatically --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset "built/highlight.css"}}"/>
-    <script data-ad-client="ca-pub-8394045556541803" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-8394045556541803" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings,
     it should always be the last tag before the closing head tag --}}
@@ -89,9 +98,9 @@
             fallbackCopyTextToClipboard(text);
             return;
         }
-        await navigator.clipboard.writeText(text).then(function() {
+        await navigator.clipboard.writeText(text).then(function () {
             console.log('Async: Copying to clipboard was successful!');
-        }, function(err) {
+        }, function (err) {
             console.error('Async: Could not copy text: ', err);
         })
     }
@@ -104,6 +113,7 @@
         });
         // FitVids - Makes video embeds responsive
         $(".gh-content").fitVids();
+
 
         Array.from(document.querySelectorAll('pre code')).map(x => x.parentElement).forEach((x) => {
             const child = document.createElement('div')
@@ -125,8 +135,6 @@
                 code.innerText = lines.join('\n')
             }
 
-            hljs.highlightBlock(code)
-
             child.append(title)
             const copy = document.createElement('span')
             copy.innerText = '복사하기'
@@ -136,11 +144,12 @@
             copy.style.userSelect = 'none'
             copy.style.cursor = 'pointer'
             copy.onclick = () => {
-                copyTextToClipboard(code.innerText).then(()=>alert('복사되었습니다.'))
+                copyTextToClipboard(code.innerText).then(() => alert('복사되었습니다.'))
             }
             child.append(copy)
             x.prepend(child)
         })
+        Array.from(document.querySelectorAll('code')).forEach(code => hljs.highlightBlock(code))
     });
 </script>
 
