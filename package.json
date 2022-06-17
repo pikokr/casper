@@ -95,6 +95,6 @@
         ]
     },
     "dependencies": {
-        "rimraf": "^3.0.2"
+        "rimraf": "3.0.2"
     }
 }
